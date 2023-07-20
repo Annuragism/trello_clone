@@ -1,6 +1,7 @@
 {
-  "name": "food_app",
+  "name": "trello_clone",
   "version": "0.1.0",
+  "homepage": "https://Annuragism.github.io/trello_clone",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.8",
@@ -36,8 +37,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server --watch db.json --port 8000",
-    "dev": "npm run start & npm run server"
+    "dev": "npm run start & npm run server",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -56,5 +58,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
   }
 }

@@ -25,7 +25,9 @@ const LabelList = [
 //Task
 const Task = ({ name = "Task Name", type = null, t, tasks, setTasks }) => {
   const { hot, priority, label_color } = t;
-  const tastRef = useRef(null);
+  const tastRef = useRef(t);
+  const [selectedTask, setSelectedTask] = useState(t);
+
   const [open, setOpen] = useState(false);
 
   const handleDragStart = (event, task, status, id) => {
@@ -42,6 +44,8 @@ const Task = ({ name = "Task Name", type = null, t, tasks, setTasks }) => {
   const handleClose = () => {
     setOpen(false);
   };
+
+ 
 
   const ColorLabelsStyle = ({
     color,
@@ -77,11 +81,18 @@ const Task = ({ name = "Task Name", type = null, t, tasks, setTasks }) => {
     );
   };
 
+   const handelUpdate = () => {
+     console.log(selectedTask);
+     let filteredTask = tasks?.filter(v=>v.id !== selectedTask.id)
+     setTasks([...filteredTask,selectedTask]);
+     handleClose();
+   };
   return (
     <>
       <Box
         sx={{
           border: "1px solid #e7e7e7",
+          borderLeft: "none",
           borderRadius: 2,
           m: 1,
           p: 2,
@@ -93,6 +104,7 @@ const Task = ({ name = "Task Name", type = null, t, tasks, setTasks }) => {
         onDragStart={(event) => handleDragStart(event, name, type, t?.id)}
         onClick={() => {
           tastRef.current = t;
+            setSelectedTask(t);
           setOpen(true);
         }}
       >
@@ -104,8 +116,10 @@ const Task = ({ name = "Task Name", type = null, t, tasks, setTasks }) => {
               width: "5px",
               backgroundColor: label_color,
               position: "absolute",
-              left: 1,
+              left: 0,
               top: 0,
+              borderTopLeftRadius: 9,
+              borderBottomLeftRadius: 9,
             }}
           ></Box>
         )}
@@ -147,6 +161,7 @@ const Task = ({ name = "Task Name", type = null, t, tasks, setTasks }) => {
           </Typography>
           <IconButton onClick={() => handelTaskDelete(t)}>
             <Avatar
+              variant="square"
               src={Del}
               sx={{
                 height: "20px",
@@ -168,15 +183,41 @@ const Task = ({ name = "Task Name", type = null, t, tasks, setTasks }) => {
               <>
                 <Box>
                   <Typography>Title</Typography>
-                  <TextField fullWidth value={tastRef.current?.name} />
+                  <TextField
+                    fullWidth
+                    value={selectedTask.name}
+                    onChange={(e) =>
+                      setSelectedTask((prevState) => ({
+                        ...prevState,
+                        name: e.target.value,
+                      }))
+                    }
+                  />
                 </Box>
                 <Box>
                   <Typography>Description</Typography>
-                  <TextField fullWidth value={tastRef.current?.desc} />
+                  <TextField
+                    fullWidth
+                    value={selectedTask.desc}
+                    onChange={(e) =>
+                      setSelectedTask((prevState) => ({
+                        ...prevState,
+                        desc: e.target.value,
+                      }))
+                    }
+                  />
                 </Box>
                 <Box>
                   <Typography>Hot</Typography>
-                  <Checkbox checked={tastRef.current?.hot} />
+                  <Checkbox
+                    checked={selectedTask.hot}
+                    onChange={(e) =>
+                      setSelectedTask((prevState) => ({
+                        ...prevState,
+                        hot: e.target.checked,
+                      }))
+                    }
+                  />
                 </Box>
                 <Box>
                   <Typography>Priority</Typography>
@@ -184,8 +225,13 @@ const Task = ({ name = "Task Name", type = null, t, tasks, setTasks }) => {
                   <Select
                     size="small"
                     fullWidth
-                    value={tastRef.current?.priority}
-                    onChange={(e) => console.log(e.target.value)}
+                    value={selectedTask.priority}
+                    onChange={(e) =>
+                      setSelectedTask((prevState) => ({
+                        ...prevState,
+                        priority: e.target.value,
+                      }))
+                    }
                   >
                     <MenuItem value="p1">P1</MenuItem>
                     <MenuItem value="p2">P2</MenuItem>
@@ -204,9 +250,13 @@ const Task = ({ name = "Task Name", type = null, t, tasks, setTasks }) => {
                       index={c.id}
                       color={c?.color}
                       selectedLable={
-                        LabelList?.find(
-                          (e) => e.color === tastRef.current?.label_color
-                        )?.id
+                        selectedTask.label_color === c.color && c.id
+                      }
+                      setSelectedLablel={() =>
+                        setSelectedTask((prevState) => ({
+                          ...prevState,
+                          label_color: c.color,
+                        }))
                       }
                     />
                   ))}
@@ -214,7 +264,7 @@ const Task = ({ name = "Task Name", type = null, t, tasks, setTasks }) => {
               </>
             )}
           </Box>
-          <Button variant="contained" onClick={handleClose}>
+          <Button variant="contained" onClick={handelUpdate}>
             Update
           </Button>
           <Button onClick={handleClose}>Close</Button>

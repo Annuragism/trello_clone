@@ -37,7 +37,9 @@ const KanbanCard = ({ type, tasks, setTasks }) => {
 
   return (
     <Paper
-      sx={{ border: "1px dashed #FFF", minHeight: 500, overflow: "auto" }}
+      sx={{
+        overflow: "hidden",
+      }}
       onDragOver={(event) => event.preventDefault()}
       onDrop={(event) => handleDrop(event, tasks, setTasks, type)}
     >
@@ -53,23 +55,32 @@ const KanbanCard = ({ type, tasks, setTasks }) => {
         {type}
       </Typography>
       <Divider />
-      <Box mt={1}>
-        {tasks.filter((task) => task.status === type).length > 0 ? (
-          tasks
-            .filter((task) => task.status === type)
-            .map((task, index) => (
-              <Task
-                key={index}
-                name={task.name}
-                type={type}
-                t={task}
-                tasks={tasks}
-                setTasks={setTasks}
-              />
-            ))
-        ) : (
-          <Typography align="center">No Task Found</Typography>
-        )}
+      <Box py={1}>
+        <Box
+          mt={1}
+          sx={{
+            maxHeight: 500,
+            minHeight: 500,
+            overflow: "auto",
+          }}
+        >
+          {tasks.filter((task) => task.status === type).length > 0 ? (
+            tasks
+              .filter((task) => task.status === type)
+              .map((task, index) => (
+                <Task
+                  key={index}
+                  name={task.name}
+                  type={type}
+                  t={task}
+                  tasks={tasks}
+                  setTasks={setTasks}
+                />
+              ))
+          ) : (
+            <Typography align="center">No Task Found</Typography>
+          )}
+        </Box>
       </Box>
     </Paper>
   );
