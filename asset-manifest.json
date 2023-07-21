@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/trello_clone/static/css/main.d44c8681.css",
-    "main.js": "/trello_clone/static/js/main.f4e6b861.js",
+    "main.css": "/trello_clone/static/css/main.b89fbcb7.css",
+    "main.js": "/trello_clone/static/js/main.d804f481.js",
     "static/js/787.20c63e1b.chunk.js": "/trello_clone/static/js/787.20c63e1b.chunk.js",
     "static/media/p4.jpg": "/trello_clone/static/media/p4.2c582ee0b2b94aa1950b.jpg",
     "static/media/p1.jpg": "/trello_clone/static/media/p1.574afc510b555b9e7897.jpg",
@@ -13,12 +13,12 @@
     "static/media/p5.jpg": "/trello_clone/static/media/p5.7e0eb6da7395be57964b.jpg",
     "static/media/tree.jpg": "/trello_clone/static/media/tree.fa273077d9093ef92708.jpg",
     "index.html": "/trello_clone/index.html",
-    "main.d44c8681.css.map": "/trello_clone/static/css/main.d44c8681.css.map",
-    "main.f4e6b861.js.map": "/trello_clone/static/js/main.f4e6b861.js.map",
+    "main.b89fbcb7.css.map": "/trello_clone/static/css/main.b89fbcb7.css.map",
+    "main.d804f481.js.map": "/trello_clone/static/js/main.d804f481.js.map",
     "787.20c63e1b.chunk.js.map": "/trello_clone/static/js/787.20c63e1b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d44c8681.css",
-    "static/js/main.f4e6b861.js"
+    "static/css/main.b89fbcb7.css",
+    "static/js/main.d804f481.js"
   ]
 }
