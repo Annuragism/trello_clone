@@ -111,7 +111,6 @@ const Task = ({ name = "Task Name", type = null, t, tasks, setTasks }) => {
         {label_color && (
           <Box
             sx={{
-              position: "absolute",
               height: "100%",
               width: "5px",
               backgroundColor: label_color,
@@ -137,9 +136,9 @@ const Task = ({ name = "Task Name", type = null, t, tasks, setTasks }) => {
               padding: "2px",
               borderRadius: 4,
               background:
-                priority == "p1"
+                priority === "p1"
                   ? "#d72222cc"
-                  : priority == "p2"
+                  : priority === "p2"
                   ? "#209ea1e0"
                   : "#3737f4d6",
               textAlign: "center",

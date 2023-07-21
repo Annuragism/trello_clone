@@ -20,9 +20,7 @@ const KanbanCard = ({ type, tasks, setTasks }) => {
 
   const handleDrop = (event, tasks, setTasks, targetType) => {
     event.preventDefault();
-    const droppedTask = event.dataTransfer.getData("task");
     const droppedTaskId = event.dataTransfer.getData("id");
-    const droppedStatus = event.dataTransfer.getData("status");
 
     // Find the dropped task
     const updatedTasks = tasks.map((task) => {
@@ -37,8 +35,10 @@ const KanbanCard = ({ type, tasks, setTasks }) => {
 
   return (
     <Paper
+    elevation={12}
       sx={{
         overflow: "hidden",
+        border:"1px solid #000"
       }}
       onDragOver={(event) => event.preventDefault()}
       onDrop={(event) => handleDrop(event, tasks, setTasks, type)}

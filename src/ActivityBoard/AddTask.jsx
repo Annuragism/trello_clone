@@ -89,7 +89,7 @@ const AddTask = ({ tasks, setTasks }) => {
 
   return (
     <Box sx={{ backgroundColor: "#FFF", p: 2, borderRadius: 5 }}>
-      <Box display="flex" justifyContent={"space-around"} alignItems={"center"}>
+      <Box display="flex" justifyContent={"space-around"} alignItems={"center"} flexWrap="wrap">
         <Typography align="center">Add Task</Typography>
         <TextField
           size="small"
